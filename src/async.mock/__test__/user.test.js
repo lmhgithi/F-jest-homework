@@ -6,11 +6,12 @@ jest.mock("../verify");
 jest.mock("axios");
 
 describe("register", () => {
-  test("should post user when validated", () => {
+  test("should post user when validated", async () => {
     // TODO 19: add test here
-    register("mocked username", "mocked password");
-
+    const result = register("mocked username", "mocked password");
     expect(axios.post).toHaveBeenCalled();
+    // TODO feedback: 可以测试一下post的返回
+    await expect(result).resolves.toEqual({});
   });
 
   test("should reject with Error when username is invalid", async () => {
